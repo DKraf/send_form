@@ -84,7 +84,7 @@
                         </label>
                         <div class="input-group">
                             <label class="input-group-text" for="inputGroupFile01">Загрузить</label>
-                            <input type="file" class="form-control" id="upload">
+                            <input type="file" class="form-control" accept="application/pdf"  name="pdf" id="upload">
                             <div class="error-msg"></div>
                         </div>
                     </div>

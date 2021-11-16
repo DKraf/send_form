@@ -306,47 +306,43 @@ $(document).ready(function(){
         }
     });
 
-    // Теперь отправим наше письмо с помощью AJAX
+    /**
+     * Проверка PDF
+     */
+    $('#upload').bind('change', function() {
+        var size = this.files[0].size;
+        var name = this.files[0].name;
+        var fileExtension = ['pdf'];
+        console.log(size)
+        if(2000000 < size) {
+            $('#upload').next('.error-msg').text('Не удалось загрузить следующие файлы: ' + name + ' ( Файл слишком большой. Размер не должен превышать 2.00 МиБ.').css('color', '#fd9a9a');
+        } else if($.inArray(name.split('.').pop().toLowerCase(), fileExtension) == -1) {
+            $('#upload').next('.error-msg').text('Не удалось загрузить следующие файлы:' + name + ' ( Файл имеет недопустимыый формат').css('color', '#fd9a9a');
+        } else {
+            $('#upload').next('.error-msg').text('')
+        }
+    });
+
+    /**
+     * Отправка формы
+     */
     $('form#feedback-form').submit(function(e){
-
-        // Запрещаем стандартное поведение для кнопки submit
         e.preventDefault();
-
-        // После того, как мы нажали кнопку "Отправить", делаем проверку,
-        // если кол-во полей с классом .not_error равно 3 (так как у нас всего 3 поля), то есть все поля заполнены верно,
-        // выполняем наш Ajax сценарий и отправляем письмо адресату
-
-        if(all_true == 0)
-        {
-            // Eще одним моментом является то, что в качестве указания данных для передачи обработчику send.php, мы обращаемся $(this) к нашей форме,
-            // и вызываем метод .serialize().
-            // Это очень удобно, т.к. он сразу возвращает сгенерированную строку с именами и значениями выбранных элементов формы.
-
+        if(all_true == 0) {
             $.ajax({
-                url: 'send.php',
+                url: 'request/add',
                 type: 'post',
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                 data: $(this).serialize(),
-
-                beforeSend: function(xhr, textStatus){
-                    $('form#feedback-form :input').attr('disabled','disabled');
-                },
-
                 success: function(response){
                     $('form#feedback-form :input').removeAttr('disabled');
-                    $('form#feedback-form :text, textarea').val('').removeClass().next('.error-box').text('');
+                    $('form#feedback-form :text, textarea').val('').removeClass().next('.error-msg').text('');
                     alert(response);
                 }
-            }); // end ajax({...})
-        }
-
-            // Иначе, если количество полей с данным классом не равно значению 3, мы возвращаем false,
-        // останавливая отправку сообщения в невалидной форме
-        else
-        {
-            console.log(all_true)
+            });
+        } else {
            alert("Заполните все поля")
         }
-
-    }); // end submit()
+    });
 
 });

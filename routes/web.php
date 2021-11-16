@@ -18,3 +18,5 @@ Route::get('/', function () {
 });
 Route::post('captcha-validation', [CaptchaController::class, 'checkCaptcha']);
 Route::get('reload-captcha', [CaptchaController::class, 'reloadCaptcha']);
+Route::get('request/add', [RequestController::class, 'add']);
+
