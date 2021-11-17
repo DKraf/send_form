@@ -7,67 +7,67 @@
 <body>
     <div>
         <h1>Компания:</h1>
-        <p>{{ $temp_data['company_name']  }}</p>
+        <p>{{ $details['company_name']  }}</p>
     </div>
     <div>
         <h1>Юр. Адрес:</h1>
-        <p>{{ $temp_data['legal_address']}}</p>
+        <p>{{ $details['legal_address']}}</p>
     </div>
     <div>
         <h1>Индекс:</h1>
-        <p>{{ $temp_data['post_code'] }}</p>
+        <p>{{ $details['post_code'] }}</p>
     </div>
     <div>
         <h1>Тел. компании:</h1>
-        <p>{{ $temp_data['company_phone'] }}</p>
+        <p>{{ $details['company_phone'] }}</p>
     </div>
     <div>
         <h1>Почта компании</h1>
-        <p>{{$temp_data['company_email'] }}</p>
+        <p>{{$details['company_email'] }}</p>
     </div>
     <div>
         <h1>БИН:</h1>
-        <p>{{ $temp_data['bin']}}</p>
+        <p>{{ $details['bin']}}</p>
     </div>
     <div>
         <h1>ИИК:</h1>
-        <p>{{ $temp_data['iik'] }}</p>
+        <p>{{ $details['iik'] }}</p>
     </div>
     <div>
         <h1>Банк:</h1>
-        <p>{{ $temp_data['bank_name'] }}</p>
+        <p>{{ $details['bank_name'] }}</p>
     </div>
     <div>
         <h1>БИК</h1>
-        <p>{{ $temp_data['bik'] }}</p>
+        <p>{{ $details['bik'] }}</p>
     </div>
     <div>
         <h1>Директор:</h1>
-        <p>{{  $temp_data['director_name']  }}</p>
+        <p>{{  $details['director_name']  }}</p>
     </div>$temp_data['bik']
     <div>
         <h1>Ответственный:</h1>
-        <p>{{ $temp_data['respons_person'] }}</p>
+        <p>{{ $details['respons_person'] }}</p>
     </div>
     <div>
         <h1>Ответственный:</h1>
-        <p>{{ $temp_data['bank_name'] }}</p>
+        <p>{{ $details['bank_name'] }}</p>
     </div>
     <div>
         <h1>Тел . Ответственного:</h1>
-        <p>{{ $temp_data['respons_phone'] }}</p>
+        <p>{{ $details['respons_phone'] }}</p>
     </div>
     <div>
         <h1> Почта. Ответственного:</h1>
-        <p>{{ $temp_data['respons_email']}}</p>
+        <p>{{ $details['respons_email']}}</p>
     </div>
     <div>
         <h1>ДОМЕН:</h1>
-        <p>{{ $temp_data['domen'] }}</p>
+        <p>{{ $details['domen'] }}</p>
     </div>
     <div>
         <h1>Документ:</h1>
-        <p>{{ $_SERVER['SERVER_NAME'] . $temp_data['pdf'] }}</p>
+        <p>{{ $_SERVER['SERVER_NAME'] . $details['pdf'] }}</p>
     </div>
 
 <p>Thank you</p>

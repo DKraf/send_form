@@ -41,7 +41,7 @@ class RequestController extends Controller
             $temp_data_service = new TempData();
             $temp_data = $temp_data_service->get($request);
             Requests::create($temp_data);
-            \Mail::to('malina_fruttis@mail.ru')->send(new \App\Mail\MyTestMail($temp_data));
+            \Mail::to('malina_fruttis@mail.ru')->send(new \App\Mail\SendMail($temp_data));
             return response()->json(['status' => true]);
         }
     }
