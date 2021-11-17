@@ -5,7 +5,6 @@ namespace App\Http\Services;
 
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class TempData
 {
@@ -16,6 +15,7 @@ class TempData
      */
     public function get($request): array
     {
+
         $name = $request->file('pdf')->getClientOriginalName();
         $path = $request->file('pdf')->store('public/images');
 

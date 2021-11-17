@@ -4,8 +4,8 @@ $(document).ready(function(){
      * @type {RegExp}
      * @author Kravchenko Dmitriy
      */
-    let reg_text = /^[0-9a-zA-Zа-яА-Я«»,.\-#№@&()әғқңөұүһі]+$/;
-    let reg_fio = /^[0-9a-zA-Zа-яА-Яәғқңөұүһі]+$/;
+    let reg_text = /^[0-9a-zA-Zа-яА-Я«»,.\-#№@&()әғқңөұүһі\s+]+$/;
+    let reg_fio = /^[0-9a-zA-Zа-яА-Яәғқңөұүһі\s+]+$/;
     let reg_email = /^([a-zA-Z0-9_.-])+@([a-zA-Z0-9_.-])+\.([a-zA-Z])+([a-zA-Z])+/;
     let reg_number = /^([0-9])+/;
     let reg_phone = /^[0-9+\-()]+$/;
@@ -154,7 +154,7 @@ $(document).ready(function(){
     // ИИК
     $('#iik').blur(function(){
         var value = $(this).val();
-        if (value.length < 12) {
+        if (value.length < 18) {
             $(this).css('background-color','#fd9a9a');
             $(this).next('.error-msg').text('Необходимо заполнить «ИИК KZ (20 значный счет)*».').css('color','#fd9a9a');
         } else if (!reg_lat_number.test(value)) {
@@ -373,8 +373,12 @@ $(document).ready(function(){
                 contentType: false,
                 processData: false,
                 success: function(response){
-                    alert('Заявка успешно подана');
-                    location.reload();
+                    if (response['status'] == true ) {
+                        alert('Заявка успешно подана');
+                        location.reload();
+                    } else {
+                        alert('Ошибка подачи!');
+                    }
                 }
             });
         } else {
