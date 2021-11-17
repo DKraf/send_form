@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CaptchaController;
+use App\Http\Controllers\RequestController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,5 +19,5 @@ Route::get('/', function () {
 });
 Route::post('captcha-validation', [CaptchaController::class, 'checkCaptcha']);
 Route::get('reload-captcha', [CaptchaController::class, 'reloadCaptcha']);
-Route::get('request/add', [RequestController::class, 'add']);
+Route::post('request/add', [RequestController::class, 'create']);
 

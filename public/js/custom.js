@@ -11,7 +11,7 @@ $(document).ready(function(){
     let reg_phone = /^[0-9+\-()]+$/;
     let reg_lat_number = /^[a-zA-Z0-9]+/;
     let reg_lit = /^[A-z]+$/;
-    let all_true = 15;
+    let all_true = 10;
 
 
     /**
@@ -299,7 +299,7 @@ $(document).ready(function(){
                     } else {
                         $('#captcha').css('background-color', '#fd9a9a');
                         $('#captcha').next('.error-msg').text('Неправильный проверочный код.').css('color', '#fd9a9a');
-                        all_true--
+
                     }
                 }
             });
@@ -328,16 +328,53 @@ $(document).ready(function(){
      */
     $('form#feedback-form').submit(function(e){
         e.preventDefault();
-        if(all_true == 0) {
+        if(all_true < 1) {
+            let company_name = $('#companyName').val();
+            let legal_address = $('#legalAddress').val();
+            let post_code = $('#postCode').val();
+            let company_phone = $('#companyPhone').val();
+            let company_email = $('#companyEmail').val();
+            let bin = $('#bin').val();
+            let iik = $('#iik').val();
+            let bank_name = $('#bankName').val();
+            let bik = $('#bik').val();
+            let director_name = $('#directorName').val();
+            let respons_person = $('#responsPerson').val();
+            let respons_phone = $('#responsPhone').val();
+            let respons_email = $('#responsEmail').val();
+            let domen = $('#domen').val();
+            let pdf  = $('#upload').prop('files')[0];
+            let form_data = new FormData();
+
+            form_data.append('company_name', company_name);
+            form_data.append('legal_address', legal_address);
+            form_data.append('post_code', post_code);
+            form_data.append('company_phone', company_phone);
+            form_data.append('company_email', company_email);
+            form_data.append('bin', bin);
+            form_data.append('iik', iik);
+            form_data.append('bank_name', bank_name);
+            form_data.append('bik', bik);
+            form_data.append('director_name', director_name);
+            form_data.append('respons_person', respons_person);
+            form_data.append('respons_phone', respons_phone);
+            form_data.append('respons_email', respons_email);
+            form_data.append('domen', domen);
+            form_data.append('pdf', pdf);
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
             $.ajax({
                 url: 'request/add',
-                type: 'post',
-                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-                data: $(this).serialize(),
+                type: "POST",
+                data: form_data,
+                contentType: false,
+                processData: false,
                 success: function(response){
-                    $('form#feedback-form :input').removeAttr('disabled');
-                    $('form#feedback-form :text, textarea').val('').removeClass().next('.error-msg').text('');
-                    alert(response);
+                    alert('Заявка успешно подана');
+                    location.reload();
                 }
             });
         } else {

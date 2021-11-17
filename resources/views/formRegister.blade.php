@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row justify-content-sm-between">
             <div class="col-md-12">
-                <form id="feedback-form" class="row g-3">
+                <form id="feedback-form"  method="post" action="" enctype="multipart/form-data" class="row g-3">
                     <div class="col-md-6">
                         <label for="companyName" class="form-label">Наименование организации (пропишите полностью) *</label>
                         <input type="text" class="form-control" id="companyName">
